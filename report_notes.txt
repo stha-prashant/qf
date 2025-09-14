@@ -1,0 +1,15 @@
+a)i.) Training Error: Just the error that you get after fitting the entire dataset
+
+a)ii.) Prediction of test error: The cross validation error for the selected model.
+
+b.) Basically trial and error:
+  		1.) First tried polynomial features with interaction items. No improvement was seen above baseline RSS (baseline RSS = the model predicts the average of actual y values for every x). Tried ridge regularization with this, still no improvement.
+
+		2.) Remove interaction items. Saw decent improvement. 
+		3.) Tried to include other features like log, sin, sqrt, etc.
+		    sqrt improved the metrics even further. 
+		4.) Sqrt + no iteraction items + ridge regulariztaion with lambda = 100 seemed to give the improvement in test metrics. 
+
+c.) The prediction of the test error = cross validation error for the selected model. As our model was selected with cross validation with high value of K, the test error estimate is almost unbiased. And given that the train error was close to the test error, consistently in different orders, this seems to imply that there aren't strong outliers in the dataset. We use this information to guess that the data generating process doesn't create strong outliers, thus we feel confident in using the CV test error as the prediction for the test error of the test data set.
+
+d.) Used cross validation and plotted train vs. test to see overfitting. Also, used ridge regularization to reduce to the complexity of high order polynomial, thus preventing high order polynomials from fitting noise, hopefully.
